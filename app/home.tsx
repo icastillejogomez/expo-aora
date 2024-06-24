@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { StyleSheet } from 'react-native'
-import { Link } from 'expo-router'
 
 import { AoraView, AoraText } from '@/ui'
 
@@ -12,12 +11,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Index: FC = () => {
+const Home: FC = () => {
   return (
     <AoraView style={styles.container}>
-      <AoraText>Index</AoraText>
-      <Link href="/home">Go to home</Link>
+      <AoraText>Home</AoraText>
     </AoraView>
   )
 }
-export default Index
+export default Home

@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>myapp</string>
-          <string>com.github.icastillejogomez.expo-aora</string>
+          <string>com.github.icastillejogomez.expoaora.ios</string>
         </array>
       </dict>
       <dict>

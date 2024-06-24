@@ -14,13 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.github.icastillejogomez.expo-aora"
+      "bundleIdentifier": "com.github.icastillejogomez.expoaora.ios"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.github.icastillejogomez.expoaora.android"
     },
     "web": {
       "bundler": "metro",
