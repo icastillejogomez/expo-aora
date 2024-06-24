@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-demo",
-    "slug": "expo-demo",
+    "name": "expo-aora",
+    "slug": "expo-aora",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.github.icastillejogomez.expo-demo"
+      "bundleIdentifier": "com.github.icastillejogomez.expo-aora"
     },
     "android": {
       "adaptiveIcon": {
