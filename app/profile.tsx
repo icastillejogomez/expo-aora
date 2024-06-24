@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Home: FC = () => {
+const Profile: FC = () => {
   return (
     <AoraView style={styles.container}>
-      <AoraText>Home</AoraText>
+      <AoraText>Profile</AoraText>
     </AoraView>
   )
 }
-export default Home
+export default Profile

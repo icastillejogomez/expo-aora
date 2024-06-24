@@ -4,20 +4,26 @@ import { Link } from 'expo-router'
 
 import { AoraView, AoraText } from '@/ui'
 
+const Index: FC = () => {
+  return (
+    <AoraView style={styles.container}>
+      <AoraText type="title">Aora!</AoraText>
+      <Link href="/profile" style={styles.link}>
+        Go to profile
+      </Link>
+    </AoraView>
+  )
+}
+export default Index
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  link: {
+    marginTop: 15,
+    color: 'blue',
+  },
 })
-
-const Index: FC = () => {
-  return (
-    <AoraView style={styles.container}>
-      <AoraText>Index</AoraText>
-      <Link href="/home">Go to home</Link>
-    </AoraView>
-  )
-}
-export default Index
