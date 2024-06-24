@@ -1,29 +1,29 @@
-import type { PropsWithChildren, ReactElement } from 'react';
-import { StyleSheet, useColorScheme } from 'react-native';
+import type { PropsWithChildren, ReactElement } from 'react'
+import { StyleSheet, useColorScheme } from 'react-native'
 import Animated, {
   interpolate,
   useAnimatedRef,
   useAnimatedStyle,
   useScrollViewOffset,
-} from 'react-native-reanimated';
+} from 'react-native-reanimated'
 
-import { ThemedView } from '@/components/ThemedView';
+import { AoraView } from '@/ui'
 
-const HEADER_HEIGHT = 250;
+const HEADER_HEIGHT = 250
 
 type Props = PropsWithChildren<{
-  headerImage: ReactElement;
-  headerBackgroundColor: { dark: string; light: string };
-}>;
+  headerImage: ReactElement
+  headerBackgroundColor: { dark: string; light: string }
+}>
 
 export default function ParallaxScrollView({
   children,
   headerImage,
   headerBackgroundColor,
 }: Props) {
-  const colorScheme = useColorScheme() ?? 'light';
-  const scrollRef = useAnimatedRef<Animated.ScrollView>();
-  const scrollOffset = useScrollViewOffset(scrollRef);
+  const colorScheme = useColorScheme() ?? 'light'
+  const scrollRef = useAnimatedRef<Animated.ScrollView>()
+  const scrollOffset = useScrollViewOffset(scrollRef)
 
   const headerAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -32,18 +32,18 @@ export default function ParallaxScrollView({
           translateY: interpolate(
             scrollOffset.value,
             [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-            [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75]
+            [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
           ),
         },
         {
           scale: interpolate(scrollOffset.value, [-HEADER_HEIGHT, 0, HEADER_HEIGHT], [2, 1, 1]),
         },
       ],
-    };
-  });
+    }
+  })
 
   return (
-    <ThemedView style={styles.container}>
+    <AoraView style={styles.container}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <Animated.View
           style={[
@@ -53,10 +53,10 @@ export default function ParallaxScrollView({
           ]}>
           {headerImage}
         </Animated.View>
-        <ThemedView style={styles.content}>{children}</ThemedView>
+        <AoraView style={styles.content}>{children}</AoraView>
       </Animated.ScrollView>
-    </ThemedView>
-  );
+    </AoraView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
     gap: 16,
     overflow: 'hidden',
   },
-});
+})
