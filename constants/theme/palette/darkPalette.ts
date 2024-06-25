@@ -1,13 +1,20 @@
 import { lightPalette } from './lightPalette'
 
+const primary400 = '#FFA300'
+const primary600 = '#FF8C00'
+
 export const darkPalette: typeof lightPalette = {
   text: {
-    primary: '#ECEDEE',
+    default: '#ECEDEE',
+    neutral: '#687076',
+    primary: primary600,
+    secondary: '#687076',
     tintInactive: '#687076',
+    link: '#007AFF',
   },
   primary: {
-    400: '#FFA300',
-    600: '#FF8C00',
+    400: primary400,
+    600: primary600,
   },
   background: {
     primary: '#161622',

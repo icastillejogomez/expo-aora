@@ -4,7 +4,7 @@ import { Text, type TextProps, type StyleProp, TextStyle, StyleSheet } from 'rea
 import { useThemePalette } from '@/hooks'
 import { AoraTextColor } from '@/constants'
 
-export type AoraTextType = 'default' | 'title'
+export type AoraTextType = 'default' | 'title' | 'caption'
 
 type AoraTextProps = TextProps & {
   type?: AoraTextType
@@ -40,12 +40,16 @@ type AoraTextStyle = {
 
 const styles = StyleSheet.create<AoraTextStyle>({
   default: {
-    fontSize: 14,
+    fontSize: 16,
     lineHeight: 24,
   },
   title: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: 'bold',
-    lineHeight: 32,
+    lineHeight: 42,
+  },
+  caption: {
+    fontSize: 14,
+    lineHeight: 20,
   },
 })
