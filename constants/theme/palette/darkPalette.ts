@@ -1,18 +1,19 @@
 import { lightPalette } from './lightPalette'
 
-const tintColorDark = '#fff'
-
 export const darkPalette: typeof lightPalette = {
-  tint: tintColorDark,
   text: {
     primary: '#ECEDEE',
+    tintInactive: '#687076',
+  },
+  primary: {
+    400: '#FFA300',
+    600: '#FF8C00',
   },
   background: {
-    primary: '#151718',
+    primary: '#161622',
+    tabBar: '#161622',
   },
   icon: {
     primary: '#9BA1A6',
   },
-  tabIconDefault: '#9BA1A6',
-  tabIconSelected: tintColorDark,
 }

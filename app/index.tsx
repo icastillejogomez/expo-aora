@@ -8,8 +8,8 @@ const Index: FC = () => {
   return (
     <AoraView style={styles.container}>
       <AoraText type="title">Aora!</AoraText>
-      <Link href="/profile" style={styles.link}>
-        Go to profile
+      <Link href="/home" style={styles.link}>
+        Go to home
       </Link>
     </AoraView>
   )

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, useMemo } from 'react'
-import { View, type ViewProps, type StyleProp, ViewStyle } from 'react-native'
+import { View, type ViewProps, type StyleProp, ViewStyle, StyleSheet } from 'react-native'
 
 import { useThemePalette } from '@/hooks'
 
@@ -13,7 +13,7 @@ export const AoraView: FC<PropsWithChildren<AoraViewProps>> = ({
   const palette = useThemePalette()
   const backgroundColor = useMemo(() => palette.background.primary, [palette])
 
-  const style: StyleProp<ViewStyle> = [{ backgroundColor }, rootStyle]
+  const style: StyleProp<ViewStyle> = [localStyles.container, { backgroundColor }, rootStyle]
 
   return (
     <View style={style} {...rest}>
@@ -21,3 +21,9 @@ export const AoraView: FC<PropsWithChildren<AoraViewProps>> = ({
     </View>
   )
 }
+
+const localStyles = StyleSheet.create({
+  container: {
+    flex: 1, // By default, AoraView fills the entire container
+  },
+})
