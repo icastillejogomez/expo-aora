@@ -3,6 +3,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import * as Font from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { AoraView } from '@/ui'
 import { useThemePalette } from '@/hooks'
@@ -48,18 +49,20 @@ export default function RootLayout() {
   }
 
   return (
-    <AoraView container onLayout={hideSplashScreen}>
-      <Stack
-        screenOptions={{
-          title: 'Aora',
-          headerShown: false,
-          contentStyle: {
-            backgroundColor: palette.background.primary,
-          },
-        }}>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </AoraView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: palette.background.primary }}>
+      <AoraView container onLayout={hideSplashScreen}>
+        <Stack
+          screenOptions={{
+            title: 'Aora',
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: palette.background.primary,
+            },
+          }}>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+        </Stack>
+        <StatusBar style="auto" />
+      </AoraView>
+    </SafeAreaView>
   )
 }
