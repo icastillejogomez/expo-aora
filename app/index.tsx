@@ -16,17 +16,29 @@ const Index: FC = () => {
   return (
     <AoraView container withBackgroundColor style={styles.container}>
       <AoraView style={styles.content}>
-        <AoraText color="primary" style={styles.title} weight="bold">
-          Aora!
-        </AoraText>
+        <Image
+          style={styles.logo}
+          source={require('../assets/images/logo.png')}
+          contentFit="contain"
+        />
         <Image
           style={styles.hero}
           source={require('../assets/images/onboarding/hero.png')}
           contentFit="contain"
         />
-        <AoraText type="default" color="default" style={styles.description}>
-          Discover Endless Possibilities with Aora
-        </AoraText>
+        <AoraView style={styles.descriptionWrapper}>
+          <AoraText type="default" color="default" style={styles.description}>
+            Discover Endless Possibilities with{' '}
+            <AoraText color="primary" weight="bold" style={styles.description}>
+              Aora
+            </AoraText>
+          </AoraText>
+          <Image
+            style={styles.pathImage}
+            source={require('../assets/images/onboarding/path.png')}
+            contentFit="contain"
+          />
+        </AoraView>
         <AoraText color="neutral" style={styles.caption}>
           Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora
         </AoraText>
@@ -55,13 +67,16 @@ const styles = StyleSheet.create({
     overflow: 'visible',
     alignItems: 'center',
   },
-  title: {
-    fontSize: 36,
-    lineHeight: 42,
+  logo: {
+    width: 140,
+    height: 60,
   },
   hero: {
     width: 340,
     height: 340,
+  },
+  descriptionWrapper: {
+    position: 'relative',
   },
   description: {
     fontSize: 30,
@@ -69,6 +84,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '600',
     letterSpacing: -1,
+  },
+  pathImage: {
+    position: 'absolute',
+    width: 70,
+    height: 20,
+    right: -5,
+    bottom: -7,
   },
   caption: {
     marginTop: 20,
