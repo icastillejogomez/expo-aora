@@ -3,7 +3,9 @@ import * as SplashScreen from 'expo-splash-screen'
 import * as Font from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+
 import { AoraView } from '@/ui'
+import { useThemePalette } from '@/hooks'
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
@@ -21,6 +23,7 @@ function isAppReady(readyState: ReadyState): boolean {
 }
 
 export default function RootLayout() {
+  const palette = useThemePalette()
   const [readyState, setReadyState] = useState<ReadyState>(initialReadyState)
 
   const loadFonts = useCallback(async () => {
@@ -45,11 +48,14 @@ export default function RootLayout() {
   }
 
   return (
-    <AoraView style={{ flex: 1 }} onLayout={hideSplashScreen}>
+    <AoraView container onLayout={hideSplashScreen}>
       <Stack
         screenOptions={{
           title: 'Aora',
           headerShown: false,
+          contentStyle: {
+            backgroundColor: palette.background.primary,
+          },
         }}>
         <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>

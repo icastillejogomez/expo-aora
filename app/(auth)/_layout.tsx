@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { StyleSheet } from 'react-native'
 
 import { AoraText, AoraView } from '@/ui'
 
-type Props = {}
+type Props = {
+  children: ReactNode
+}
 
 const AuthLayout = (props: Props) => {
   return (
     <AoraView>
       <AoraText>AuthLayout</AoraText>
+      {props.children}
     </AoraView>
   )
 }

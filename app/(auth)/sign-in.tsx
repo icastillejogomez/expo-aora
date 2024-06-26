@@ -5,7 +5,7 @@ import { AoraText, AoraView } from '@/ui'
 
 const SignInScreen = () => {
   return (
-    <AoraView>
+    <AoraView container style={styles.root}>
       <AoraText>SignIn</AoraText>
     </AoraView>
   )
@@ -13,4 +13,9 @@ const SignInScreen = () => {
 
 export default SignInScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  root: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})

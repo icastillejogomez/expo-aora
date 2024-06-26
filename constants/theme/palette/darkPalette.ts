@@ -6,8 +6,9 @@ const primary600 = '#FF8C00'
 export const darkPalette: typeof lightPalette = {
   text: {
     default: '#ECEDEE',
-    neutral: '#687076',
+    neutral: '#CDCDE0',
     primary: primary600,
+    primaryContrast: '#161622',
     secondary: '#687076',
     tintInactive: '#687076',
     link: '#007AFF',

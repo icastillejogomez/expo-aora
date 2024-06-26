@@ -5,6 +5,7 @@ const lightPaletteText = {
   default: '#11181C',
   neutral: '#687076',
   primary: primary600,
+  primaryContrast: '#fff',
   secondary: '#687076',
   tintInactive: '#6A6A6A',
   link: '#007AFF',
