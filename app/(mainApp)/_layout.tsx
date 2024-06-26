@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Tabs, Redirect } from 'expo-router'
+import { Tabs } from 'expo-router'
 
 import { useThemePalette } from '@/hooks'
 import { AoraIcon } from '@/ui'
@@ -11,6 +10,9 @@ const MainAppLayout = () => {
   return (
     <>
       <Tabs
+        sceneContainerStyle={{
+          backgroundColor: palette.background.primary,
+        }}
         screenOptions={{
           headerShown: false,
           tabBarStyle: {

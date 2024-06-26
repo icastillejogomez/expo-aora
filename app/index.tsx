@@ -10,7 +10,7 @@ const Index: FC = () => {
   const palette = useThemePalette()
 
   const handlePressContinueWithEmail = useCallback(() => {
-    router.push('sign-in')
+    router.replace('sign-in')
   }, [])
 
   return (
@@ -27,7 +27,7 @@ const Index: FC = () => {
           contentFit="contain"
         />
         <AoraView style={styles.descriptionWrapper}>
-          <AoraText type="default" color="default" style={styles.description}>
+          <AoraText variant="default" color="default" style={styles.description}>
             Discover Endless Possibilities with{' '}
             <AoraText color="primary" weight="bold" style={styles.description}>
               Aora

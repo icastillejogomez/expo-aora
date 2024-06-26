@@ -5,7 +5,7 @@ import { AoraText, AoraView } from '@/ui'
 
 const HomeScreen = () => {
   return (
-    <AoraView style={styles.root}>
+    <AoraView container style={styles.root}>
       <AoraText>HomeScreen</AoraText>
     </AoraView>
   )

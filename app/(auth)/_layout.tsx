@@ -1,21 +1,26 @@
-import React, { ReactNode } from 'react'
-import { StyleSheet } from 'react-native'
+import React from 'react'
+import { Stack } from 'expo-router'
 
-import { AoraText, AoraView } from '@/ui'
+import { useThemePalette } from '@/hooks'
 
-type Props = {
-  children: ReactNode
-}
+type Props = {}
 
 const AuthLayout = (props: Props) => {
+  const palette = useThemePalette()
+
   return (
-    <AoraView>
-      <AoraText>AuthLayout</AoraText>
-      {props.children}
-    </AoraView>
+    <>
+      <Stack
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: palette.background.primary,
+          },
+        }}>
+        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+        <Stack.Screen name="sign-up" options={{ headerShown: false }} />
+      </Stack>
+    </>
   )
 }
 
 export default AuthLayout
-
-const styles = StyleSheet.create({})

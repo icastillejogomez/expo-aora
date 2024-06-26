@@ -4,7 +4,7 @@ import { Text, type TextProps, type StyleProp, TextStyle, StyleSheet } from 'rea
 import { useThemePalette } from '@/hooks'
 import { AoraTextColor } from '@/constants'
 
-export type AoraTextType = 'default' | 'title' | 'caption'
+export type AoraTextVariant = 'default' | 'title' | 'caption'
 export type AoraTextAlign = 'left' | 'center' | 'right'
 export type AoraTextWeight =
   | 'bold'
@@ -19,7 +19,7 @@ export type AoraTextWeight =
   | '900'
 
 type AoraTextProps = TextProps & {
-  type?: AoraTextType
+  variant?: AoraTextVariant
   color?: AoraTextColor
   align?: AoraTextAlign
   weight?: AoraTextWeight
@@ -27,7 +27,7 @@ type AoraTextProps = TextProps & {
 
 export const AoraText: FC<PropsWithChildren<AoraTextProps>> = ({
   children,
-  type,
+  variant,
   align,
   color,
   weight,
@@ -36,13 +36,13 @@ export const AoraText: FC<PropsWithChildren<AoraTextProps>> = ({
 }) => {
   const palette = useThemePalette()
 
-  const typedStyle = styles[type ?? 'default']
+  const variantStyle = variantStyles[variant ?? 'default']
   const alignStyle = alignStyles[align ?? 'left']
   const weightStyle = weightStyles[weight ?? '400']
 
   const style: StyleProp<TextStyle> = [
     { color: palette.text[color ?? 'default'] },
-    typedStyle,
+    variantStyle,
     alignStyle,
     weightStyle,
     rootStyle,
@@ -56,10 +56,10 @@ export const AoraText: FC<PropsWithChildren<AoraTextProps>> = ({
 }
 
 type AoraTextStyle = {
-  [key in AoraTextType]: TextStyle
+  [key in AoraTextVariant]: TextStyle
 }
 
-const styles = StyleSheet.create<AoraTextStyle>({
+const variantStyles = StyleSheet.create<AoraTextStyle>({
   default: {
     fontSize: 16,
     lineHeight: 24,
