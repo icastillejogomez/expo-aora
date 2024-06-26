@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import { StyleSheet, TouchableHighlight } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { router } from 'expo-router'
 import { Image } from 'expo-image'
 
@@ -30,13 +30,14 @@ const Index: FC = () => {
         <AoraText color="neutral" style={styles.caption}>
           Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora
         </AoraText>
-        <TouchableHighlight
+        <TouchableOpacity
           style={[styles.button, { backgroundColor: palette.primary['600'] }]}
-          onPress={handlePressContinueWithEmail}>
+          onPress={handlePressContinueWithEmail}
+          activeOpacity={0.6}>
           <AoraText align="center" color="primaryContrast" weight="600">
             Continue with Email
           </AoraText>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </AoraView>
     </AoraView>
   )
