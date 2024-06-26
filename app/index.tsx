@@ -16,13 +16,13 @@ const Index: FC = () => {
   return (
     <AoraView container withBackgroundColor style={styles.container}>
       <AoraView style={styles.content}>
-        <AoraText type="title" color="primary" style={styles.title} weight="bold">
+        <AoraText color="primary" style={styles.title} weight="bold">
           Aora!
         </AoraText>
         <Image
           style={styles.hero}
           source={require('../assets/images/onboarding/hero.png')}
-          contentFit="cover"
+          contentFit="contain"
         />
         <AoraText type="default" color="default" style={styles.description}>
           Discover Endless Possibilities with Aora
@@ -48,17 +48,20 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'visible',
   },
   content: {
     maxWidth: 320,
+    overflow: 'visible',
     alignItems: 'center',
   },
   title: {
-    marginBottom: 30,
+    fontSize: 36,
+    lineHeight: 42,
   },
   hero: {
-    width: 320,
-    height: 320,
+    width: 340,
+    height: 340,
   },
   description: {
     fontSize: 30,
