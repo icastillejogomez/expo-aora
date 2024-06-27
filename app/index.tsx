@@ -5,6 +5,7 @@ import { Image } from 'expo-image'
 
 import { AoraView, AoraText } from '@/ui'
 import { useThemePalette } from '@/hooks'
+import AoraLogo from '@/ui/atoms/AoraLogo/AoraLogo'
 
 const Index: FC = () => {
   const palette = useThemePalette()
@@ -16,11 +17,7 @@ const Index: FC = () => {
   return (
     <AoraView container withBackgroundColor style={styles.container}>
       <AoraView style={styles.content}>
-        <Image
-          style={styles.logo}
-          source={require('../assets/images/logo.png')}
-          contentFit="contain"
-        />
+        <AoraLogo />
         <Image
           style={styles.hero}
           source={require('../assets/images/onboarding/hero.png')}
@@ -67,10 +64,7 @@ const styles = StyleSheet.create({
     overflow: 'visible',
     alignItems: 'center',
   },
-  logo: {
-    width: 140,
-    height: 60,
-  },
+
   hero: {
     width: 340,
     height: 340,
