@@ -19,10 +19,9 @@ export const AoraTextField: FC<AoraTextFieldProps> = (props) => {
   return (
     <AoraView>
       <AoraText variant="default" color="default" weight="500" style={styles.inputLabel}>
-        Password
+        {label}
       </AoraText>
       <TextInput
-        placeholder="Email"
         keyboardType="visible-password"
         placeholderTextColor={palette.input.placeholder}
         style={[

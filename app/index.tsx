@@ -3,9 +3,8 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import { router } from 'expo-router'
 import { Image } from 'expo-image'
 
-import { AoraView, AoraText } from '@/ui'
+import { AoraView, AoraText, AoraLogo } from '@/ui'
 import { useThemePalette } from '@/hooks'
-import AoraLogo from '@/ui/atoms/AoraLogo/AoraLogo'
 
 const Index: FC = () => {
   const palette = useThemePalette()

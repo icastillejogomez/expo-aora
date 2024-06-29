@@ -4,7 +4,7 @@ import { Image, ImageProps } from 'expo-image'
 
 export type AoraLogoProps = ImageProps & {}
 
-const AoraLogo: FC<AoraLogoProps> = (props) => {
+export const AoraLogo: FC<AoraLogoProps> = (props) => {
   return (
     <Image
       style={styles.logo}
@@ -14,8 +14,6 @@ const AoraLogo: FC<AoraLogoProps> = (props) => {
     />
   )
 }
-
-export default AoraLogo
 
 const styles = StyleSheet.create({
   logo: {

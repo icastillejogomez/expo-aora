@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react'
 import { router } from 'expo-router'
 import { StyleSheet, TouchableOpacity, Alert } from 'react-native'
 
-import { AoraText, AoraTextField, AoraView } from '@/ui'
+import { AoraText, AoraTextField, AoraView, AoraLogo } from '@/ui'
 import { useThemePalette, useUseCase } from '@/hooks'
-import AoraLogo from '@/ui/atoms/AoraLogo/AoraLogo'
+
 import { UserSignIn } from '@/context/users/application'
 
 type InputValue = {
@@ -27,6 +27,11 @@ const SignInScreen = () => {
     },
     [setEmail, setPassword],
   )
+
+  const handlePressForgotPassword = useCallback(() => {
+    // Alert function not available
+    Alert.alert('Forgot password', 'This function is not available yet')
+  }, [])
 
   const isEmailInputValid = useCallback<() => boolean>(() => {
     if (!email.value || !emailRegex.test(email.value)) {
@@ -85,6 +90,7 @@ const SignInScreen = () => {
 
         <AoraTextField
           label="Email"
+          placeholder="johndoe@example.com"
           value={email.value}
           onChangeText={handleInputTextChange('email')}
           error={!!email.errorMessage}
@@ -92,13 +98,14 @@ const SignInScreen = () => {
         />
         <AoraTextField
           label="Password"
+          placeholder="******"
           value={password.value}
           onChangeText={handleInputTextChange('password')}
           error={!!password.errorMessage}
           errorMessage={password.errorMessage ?? undefined}
         />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlePressForgotPassword}>
           <AoraText
             variant="caption"
             color="default"
@@ -118,7 +125,12 @@ const SignInScreen = () => {
         </TouchableOpacity>
       </AoraView>
 
-      <AoraText variant="caption" color="neutral" weight="500" style={styles.signupCaption}>
+      <AoraText
+        variant="caption"
+        color="neutral"
+        weight="500"
+        align="center"
+        style={styles.signupCaption}>
         Don't have an account?{' '}
         <AoraText
           variant="caption"
@@ -159,6 +171,5 @@ const styles = StyleSheet.create({
   },
   signupCaption: {
     marginTop: 20,
-    textAlign: 'center',
   },
 })
