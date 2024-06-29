@@ -32,7 +32,7 @@ export class User extends AggregateRoot<UserPrimitives> {
     return UserPassword.isValidPassword(password)
   }
 
-  public getPrimitives(): UserPrimitives {
+  public toPrimitives(): UserPrimitives {
     return {
       id: this.getId(),
       nickname: this.nickname.getValue(),

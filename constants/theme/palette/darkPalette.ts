@@ -12,6 +12,7 @@ export const darkPalette: typeof lightPalette = {
     secondary: '#687076',
     tintInactive: '#687076',
     link: '#007AFF',
+    error: 'red',
   },
   primary: {
     400: primary400,
@@ -20,6 +21,14 @@ export const darkPalette: typeof lightPalette = {
   background: {
     primary: '#161622',
     tabBar: '#161622',
+  },
+  input: {
+    background: '#232533',
+    border: 'transparent',
+    placeholder: '#9BA1A6',
+    color: '#CDCDE0',
+    borderError: 'red',
+    error: 'red',
   },
   icon: {
     primary: '#9BA1A6',

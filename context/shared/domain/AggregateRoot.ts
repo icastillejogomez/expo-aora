@@ -13,5 +13,5 @@ export abstract class AggregateRoot<T extends AggregateRootPrimitives> {
     return this.id.getValue()
   }
 
-  public abstract getPrimitives(): T
+  public abstract toPrimitives(): T
 }

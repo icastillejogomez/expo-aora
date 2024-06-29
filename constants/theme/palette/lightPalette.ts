@@ -9,6 +9,7 @@ const lightPaletteText = {
   secondary: '#687076',
   tintInactive: '#6A6A6A',
   link: '#007AFF',
+  error: 'red',
 }
 
 export type AoraTextColor = keyof typeof lightPaletteText
@@ -22,6 +23,14 @@ export const lightPalette = {
   background: {
     primary: '#fff',
     tabBar: '#fff',
+  },
+  input: {
+    background: '#fff',
+    border: '#687076',
+    placeholder: '#687076',
+    color: '#161622',
+    borderError: 'red',
+    error: 'red',
   },
   icon: {
     primary: '#687076',
