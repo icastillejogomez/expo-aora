@@ -32,5 +32,7 @@ export const darkPalette: typeof lightPalette = {
   },
   icon: {
     primary: '#9BA1A6',
+    // icon color is red
+    logout: '#DD2200',
   },
 }

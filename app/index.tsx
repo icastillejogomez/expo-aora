@@ -1,20 +1,39 @@
 import { FC, useCallback } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { router } from 'expo-router'
+import { Alert, StyleSheet, TouchableOpacity } from 'react-native'
+import { Redirect, router } from 'expo-router'
 import { Image } from 'expo-image'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { AoraView, AoraText, AoraLogo } from '@/ui'
-import { useThemePalette } from '@/hooks'
+import { useAuth, useThemePalette } from '@/hooks'
 
 const Index: FC = () => {
+  const [sessionToken] = useAuth()
   const palette = useThemePalette()
+
+  const handlePressClearData = useCallback(async () => {
+    await AsyncStorage.clear()
+    Alert.alert('Data cleared', 'Data cleared successfully')
+  }, [])
 
   const handlePressContinueWithEmail = useCallback(() => {
     router.replace('sign-in')
   }, [])
 
+  if (sessionToken) {
+    return <Redirect href="home" />
+  }
+
   return (
     <AoraView container withBackgroundColor style={styles.container}>
+      <TouchableOpacity
+        onPress={handlePressClearData}
+        activeOpacity={0.6}
+        style={styles.clearDataCaption}>
+        <AoraText variant="caption" color="neutral">
+          Clear data
+        </AoraText>
+      </TouchableOpacity>
       <AoraView style={styles.content}>
         <AoraLogo />
         <Image
@@ -54,9 +73,15 @@ export default Index
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'visible',
+  },
+  clearDataCaption: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
   },
   content: {
     maxWidth: 320,

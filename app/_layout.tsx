@@ -6,32 +6,35 @@ import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { AoraView } from '@/ui'
-import { useThemePalette } from '@/hooks'
+import { useThemePalette, useAuth } from '@/hooks'
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
 
 type ReadyState = {
   fontsLoaded: boolean
+  sessionChecked: boolean
 }
 
 const initialReadyState: ReadyState = {
   fontsLoaded: false,
+  sessionChecked: false,
 }
 
 function isAppReady(readyState: ReadyState): boolean {
-  return readyState.fontsLoaded
+  return readyState.fontsLoaded && readyState.sessionChecked
 }
 
 export default function RootLayout() {
   const palette = useThemePalette()
+  const [, sessionTokenReady] = useAuth()
   const [readyState, setReadyState] = useState<ReadyState>(initialReadyState)
 
   const loadFonts = useCallback(async () => {
     await Font.loadAsync({
       'SpaceMono-Regular': require('../assets/fonts/SpaceMono-Regular.ttf'),
     })
-    await new Promise((resolve) => setTimeout(resolve, 1000 * 2))
+    // await new Promise((resolve) => setTimeout(resolve, 1000 * 2))
   }, [])
 
   const hideSplashScreen = useCallback(async () => {
@@ -43,6 +46,10 @@ export default function RootLayout() {
       setReadyState((prev) => ({ ...prev, fontsLoaded: true }))
     })
   }, [loadFonts])
+
+  useEffect(() => {
+    setReadyState((prev) => ({ ...prev, sessionChecked: sessionTokenReady }))
+  }, [sessionTokenReady, setReadyState])
 
   if (!isAppReady(readyState)) {
     return null

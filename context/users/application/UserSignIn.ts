@@ -9,7 +9,6 @@ export class UserSignIn {
 
   public async execute(email: string, password: string): Promise<Result> {
     const user = await this.userRepository.searchByEmail(email)
-    console.log(user)
     if (!user) {
       throw new Error('User not found')
     }

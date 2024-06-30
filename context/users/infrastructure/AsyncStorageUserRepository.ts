@@ -17,7 +17,7 @@ export class AsyncStorageUserRepository
   }
 
   public async find(id: UUID): Promise<User | null> {
-    const primitives = await this._get(id)
+    const primitives = await this._get(this.getAggregateKey(id))
     return !primitives ? null : new User(primitives)
   }
 
@@ -27,6 +27,20 @@ export class AsyncStorageUserRepository
     for (const key of allUsersKeys) {
       const primitives = await this._get(key)
       if (primitives !== null && primitives.email === email) {
+        foundUser = new User(primitives)
+        break
+      }
+    }
+
+    return foundUser
+  }
+
+  public async searchByNickname(nickname: string): Promise<User | null> {
+    const allUsersKeys = await this._getAllAggregateKeys()
+    let foundUser: User | null = null
+    for (const key of allUsersKeys) {
+      const primitives = await this._get(key)
+      if (primitives !== null && primitives.nickname === nickname) {
         foundUser = new User(primitives)
         break
       }

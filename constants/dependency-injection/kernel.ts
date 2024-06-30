@@ -8,17 +8,21 @@
 import { UserRepository } from '@/context/users/domain'
 
 // Application imports
-import { UserSignIn } from '@/context/users/application'
+import { UserSignIn, UserSignUp } from '@/context/users/application'
 
 // Infrastructure imports
 import { AsyncStorageUserRepository } from '@/context/users/infrastructure'
+import { SessionRepository } from '@/context/session/domain'
+import { AsyncStorageSessionRepository } from '@/context/session/infrastructure'
 
 export type Kernel = {
   useCases: {
     userSignIn: UserSignIn
+    userSignUp: UserSignUp
   }
   repositories: {
     userRepository: UserRepository
+    sessionRepository: SessionRepository
   }
 }
 
@@ -32,16 +36,20 @@ export function getKernel(): Kernel {
 function loadKernel(): void {
   // Repositories
   const userRepository = new AsyncStorageUserRepository()
+  const sessionRepository = new AsyncStorageSessionRepository()
 
   // Use cases
   const userSignIn = new UserSignIn(userRepository)
+  const userSignUp = new UserSignUp(userRepository)
 
   kernel = {
     useCases: {
       userSignIn: userSignIn,
+      userSignUp: userSignUp,
     },
     repositories: {
-      userRepository: userRepository,
+      userRepository,
+      sessionRepository,
     },
   }
 }

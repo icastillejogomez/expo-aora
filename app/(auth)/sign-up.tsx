@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import { router } from 'expo-router'
 import { StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { randomUUID } from 'expo-crypto'
 
 import { AoraText, AoraTextField, AoraView, AoraLogo } from '@/ui'
 import { useThemePalette, useUseCase } from '@/hooks'
+import { UserSignUp } from '@/context/users/application'
 
 type InputValue = {
   value: string
@@ -12,6 +14,7 @@ type InputValue = {
 
 const SignUpScreen = () => {
   const palette = useThemePalette()
+  const signUpUseCase = useUseCase<UserSignUp>('userSignUp')
   const [username, setUsername] = useState<InputValue>({ value: '' })
   const [email, setEmail] = useState<InputValue>({ value: '' })
   const [password, setPassword] = useState<InputValue>({ value: '' })
@@ -29,8 +32,21 @@ const SignUpScreen = () => {
   }, [])
 
   const handlePressSignUp = useCallback(() => {
-    Alert.alert('Sign up', 'This function is not available yet')
-  }, [])
+    // TODO: Validate inputs
+    signUpUseCase
+      .execute({
+        id: randomUUID(),
+        nickname: username.value,
+        email: email.value,
+        password: password.value,
+      })
+      .then(() => {
+        router.replace('sign-in')
+      })
+      .catch((error) => {
+        Alert.alert('Something went wrong', error.message)
+      })
+  }, [username, email, password, signUpUseCase])
 
   return (
     <AoraView container style={styles.root}>
@@ -46,6 +62,7 @@ const SignUpScreen = () => {
           onChangeText={handleInputTextChange('username')}
           error={!!email.errorMessage}
           errorMessage={email.errorMessage ?? undefined}
+          autoCapitalize="none"
         />
         <AoraTextField
           label="Email"
@@ -54,6 +71,7 @@ const SignUpScreen = () => {
           onChangeText={handleInputTextChange('email')}
           error={!!email.errorMessage}
           errorMessage={email.errorMessage ?? undefined}
+          autoCapitalize="none"
         />
         <AoraTextField
           label="Password"
@@ -62,6 +80,7 @@ const SignUpScreen = () => {
           onChangeText={handleInputTextChange('password')}
           error={!!password.errorMessage}
           errorMessage={password.errorMessage ?? undefined}
+          autoCapitalize="none"
         />
 
         <TouchableOpacity

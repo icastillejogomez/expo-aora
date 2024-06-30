@@ -3,7 +3,7 @@ import { router } from 'expo-router'
 import { StyleSheet, TouchableOpacity, Alert } from 'react-native'
 
 import { AoraText, AoraTextField, AoraView, AoraLogo } from '@/ui'
-import { useThemePalette, useUseCase } from '@/hooks'
+import { useAuth, useThemePalette, useUseCase } from '@/hooks'
 
 import { UserSignIn } from '@/context/users/application'
 
@@ -15,6 +15,7 @@ type InputValue = {
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const SignInScreen = () => {
+  const [, , { setSessionToken }] = useAuth()
   const signInUseCase = useUseCase<UserSignIn>('userSignIn')
   const palette = useThemePalette()
   const [email, setEmail] = useState<InputValue>({ value: '' })
@@ -72,14 +73,15 @@ const SignInScreen = () => {
     if (isFormValid()) {
       signInUseCase
         .execute(email.value, password.value)
-        .then(() => {
-          router.replace('sign-up')
+        .then(({ sessionToken }) => {
+          setSessionToken(sessionToken)
+          router.replace('home')
         })
         .catch((error) => {
           Alert.alert('Error signin in', error.message)
         })
     }
-  }, [isFormValid, signInUseCase, email, password])
+  }, [isFormValid, signInUseCase, email, password, setSessionToken])
 
   return (
     <AoraView container style={styles.root}>
@@ -95,6 +97,7 @@ const SignInScreen = () => {
           onChangeText={handleInputTextChange('email')}
           error={!!email.errorMessage}
           errorMessage={email.errorMessage ?? undefined}
+          autoCapitalize="none"
         />
         <AoraTextField
           label="Password"
@@ -103,6 +106,7 @@ const SignInScreen = () => {
           onChangeText={handleInputTextChange('password')}
           error={!!password.errorMessage}
           errorMessage={password.errorMessage ?? undefined}
+          autoCapitalize="none"
         />
 
         <TouchableOpacity onPress={handlePressForgotPassword}>

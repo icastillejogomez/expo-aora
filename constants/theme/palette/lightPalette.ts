@@ -34,5 +34,6 @@ export const lightPalette = {
   },
   icon: {
     primary: '#687076',
+    logout: '#687076',
   },
 }

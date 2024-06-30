@@ -5,7 +5,7 @@ import { useThemePalette } from '@/hooks'
 
 type Props = {}
 
-const AuthLayout = (props: Props) => {
+const AuthLayout = (_props: Props) => {
   const palette = useThemePalette()
 
   return (

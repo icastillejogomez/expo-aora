@@ -13,7 +13,7 @@ export abstract class AsyncStorageRepository<
     this.aggregateRootKey = aggregateRootKey
   }
 
-  private getAggregateKey(id: UUID): string {
+  protected getAggregateKey(id: UUID): string {
     return `${this.aggregateRootKey}/${id}`
   }
 
@@ -24,16 +24,16 @@ export abstract class AsyncStorageRepository<
     )
   }
 
-  protected async _get(id: UUID): Promise<P | null> {
-    const aggregatePrimitives = await AsyncStorage.getItem(this.getAggregateKey(id))
+  protected async _get(key: string): Promise<P | null> {
+    const aggregatePrimitives = await AsyncStorage.getItem(key)
     if (aggregatePrimitives === null) {
       return null
     }
     return JSON.parse(aggregatePrimitives) as P
   }
 
-  protected async _delete(id: UUID): Promise<void> {
-    await AsyncStorage.removeItem(this.getAggregateKey(id))
+  protected async _delete(key: string): Promise<void> {
+    await AsyncStorage.removeItem(key)
   }
 
   protected async _update(id: UUID, aggregate: T): Promise<void> {
@@ -43,6 +43,8 @@ export abstract class AsyncStorageRepository<
 
   protected async _getAllAggregateKeys(): Promise<string[]> {
     const keys = await AsyncStorage.getAllKeys()
-    return keys.filter((key) => key.startsWith(this.aggregateRootKey))
+    return keys.filter((key) => {
+      return key.indexOf(`${this.aggregateRootKey}/`) === 0
+    })
   }
 }

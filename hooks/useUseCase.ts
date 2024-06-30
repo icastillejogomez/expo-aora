@@ -1,6 +1,6 @@
 import { useKernel } from './useKernel'
 
-type UseCase = 'userSignIn'
+type UseCase = 'userSignIn' | 'userSignUp'
 
 export const useUseCase = <T>(useCase: UseCase): T => {
   const kernel = useKernel()
