@@ -49,7 +49,6 @@ export const useAuth = (): UseAuth => {
 
   const logout = useCallback(async () => {
     const sessionRepository = kernel.repositories.sessionRepository
-    console.log(sessionRepository)
     await sessionRepository.clear()
     setLocalProfile(null)
   }, [kernel, setLocalProfile])

@@ -13,8 +13,6 @@ const ProfileScreen = () => {
     logout().then(() => router.replace('sign-in'))
   }, [logout])
 
-  console.log('profile', { session })
-
   if (!session) return null
 
   return (

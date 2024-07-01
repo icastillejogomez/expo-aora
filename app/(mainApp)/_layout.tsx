@@ -55,6 +55,7 @@ const MainAppLayout = () => {
             tabBarIcon: (props) => {
               return <AoraIcon name="plus" tintColor={props.color} size={20} contentFit="contain" />
             },
+            unmountOnBlur: true,
           }}
         />
         <Tabs.Screen
