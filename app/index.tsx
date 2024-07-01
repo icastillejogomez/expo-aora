@@ -8,7 +8,7 @@ import { AoraView, AoraText, AoraLogo } from '@/ui'
 import { useAuth, useThemePalette } from '@/hooks'
 
 const Index: FC = () => {
-  const [sessionToken] = useAuth()
+  const [session] = useAuth()
   const palette = useThemePalette()
 
   const handlePressClearData = useCallback(async () => {
@@ -20,7 +20,7 @@ const Index: FC = () => {
     router.replace('sign-in')
   }, [])
 
-  if (sessionToken) {
+  if (session) {
     return <Redirect href="home" />
   }
 

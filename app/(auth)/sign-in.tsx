@@ -15,7 +15,7 @@ type InputValue = {
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const SignInScreen = () => {
-  const [, , { setSessionToken }] = useAuth()
+  const [, , { setSession }] = useAuth()
   const signInUseCase = useUseCase<UserSignIn>('userSignIn')
   const palette = useThemePalette()
   const [email, setEmail] = useState<InputValue>({ value: '' })
@@ -73,15 +73,15 @@ const SignInScreen = () => {
     if (isFormValid()) {
       signInUseCase
         .execute(email.value, password.value)
-        .then(({ sessionToken }) => {
-          setSessionToken(sessionToken)
+        .then((sessin) => {
+          setSession(sessin)
           router.replace('home')
         })
         .catch((error) => {
           Alert.alert('Error signin in', error.message)
         })
     }
-  }, [isFormValid, signInUseCase, email, password, setSessionToken])
+  }, [isFormValid, signInUseCase, email, password, setSession])
 
   return (
     <AoraView container style={styles.root}>

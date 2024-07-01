@@ -1,6 +1,10 @@
+import { UUID } from '@/types'
 import { UserRepository } from '../domain'
 
 type Result = {
+  userId: UUID
+  nickname: string
+  email: string
   sessionToken: string
 }
 
@@ -18,6 +22,9 @@ export class UserSignIn {
     }
 
     return {
+      userId: user.getId(),
+      nickname: user.getNickname(),
+      email: user.getEmail(),
       sessionToken: '123',
     }
   }

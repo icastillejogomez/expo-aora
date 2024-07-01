@@ -27,7 +27,7 @@ function isAppReady(readyState: ReadyState): boolean {
 
 export default function RootLayout() {
   const palette = useThemePalette()
-  const [, sessionTokenReady] = useAuth()
+  const [, sessionReady] = useAuth()
   const [readyState, setReadyState] = useState<ReadyState>(initialReadyState)
 
   const loadFonts = useCallback(async () => {
@@ -48,8 +48,8 @@ export default function RootLayout() {
   }, [loadFonts])
 
   useEffect(() => {
-    setReadyState((prev) => ({ ...prev, sessionChecked: sessionTokenReady }))
-  }, [sessionTokenReady, setReadyState])
+    setReadyState((prev) => ({ ...prev, sessionChecked: sessionReady }))
+  }, [sessionReady, setReadyState])
 
   if (!isAppReady(readyState)) {
     return null
